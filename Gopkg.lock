@@ -92,17 +92,6 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7bed3b51d5574e7ecca8a1de4081e8dc2bd24d1321f61f2daee054fde27885b1"
-  name = "golang.org/x/lint"
-  packages = [
-    ".",
-    "golint",
-  ]
-  pruneopts = "UT"
-  revision = "06c8688daad7faa9da5a0c2f163a3d14aac986ca"
-
-[[projects]]
-  branch = "master"
   digest = "1:a412caf33b5d3c7938c28e1e745c10664bd180277b73ab3b34c0c467886f9969"
   name = "golang.org/x/net"
   packages = [
@@ -189,7 +178,6 @@
     "github.com/DATA-DOG/godog/gherkin",
     "github.com/gin-gonic/contrib/static",
     "github.com/gin-gonic/gin",
-    "golang.org/x/lint/golint",
     "gopkg.in/resty.v1",
   ]
   solver-name = "gps-cdcl"

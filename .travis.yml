@@ -10,6 +10,5 @@ before_install:
 script:
 - test -z "$(go fmt)"
 - go vet ./...
-- golint
 - go test
 - go doc
