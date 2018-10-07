@@ -1,5 +1,4 @@
 language: go
-go_import_path: github.com/danielclasen/openclass
 
 go:
 - "1.11.x"
