@@ -19,7 +19,7 @@ func main() {
 
 func getMainEngine() (engine *gin.Engine, api *gin.RouterGroup) {
 	engine = gin.Default()
-	engine.Use(static.Serve("/", static.LocalFile("./web", true)))
+	engine.Use(static.Serve("/", static.LocalFile("./web/dist", true)))
 	api = engine.Group("/api/v1")
 	return
 }

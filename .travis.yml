@@ -1,14 +1,23 @@
-language: go
+matrix:
+  include:
+  - language: go
+    go:
+    - "1.11.x"
+    before_install:
+    - go get -u github.com/golang/dep/cmd/dep
+    - dep ensure
+    script:
+    - test -z "$(go fmt)"
+    - go vet ./...
+    - go test
+    - go doc
 
-go:
-- "1.11.x"
-
-before_install:
-- go get -u github.com/golang/dep/cmd/dep
-- dep ensure
-
-script:
-- test -z "$(go fmt)"
-- go vet ./...
-- go test
-- go doc
+  - language: node_js
+    node_js:
+    - "10"
+    before_script:
+    - cd web
+    - npm install
+    script:
+    - npm run test
+    - npm run build
