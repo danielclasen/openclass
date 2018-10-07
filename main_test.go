@@ -44,8 +44,8 @@ func FeatureContext(s *godog.Suite) {
 	resty.SetHeader("Content-Type", "application/json")
 
 	s.BeforeScenario(func(interface{}) {
-		engine, api := GetMainEngine()
-		SetupRouting(api)
+		engine, api := getMainEngine()
+		setupRouting(api)
 
 		ts := httptest.NewServer(engine)
 		apiFeature.BaseUrl = ts.URL

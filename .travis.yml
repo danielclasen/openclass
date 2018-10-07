@@ -9,6 +9,7 @@ before_install:
 
 script:
 - go fmt
+- go lint
 - go build -o bin/openclass
 - go test
 - go doc

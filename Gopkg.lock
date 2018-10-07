@@ -92,6 +92,17 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:7bed3b51d5574e7ecca8a1de4081e8dc2bd24d1321f61f2daee054fde27885b1"
+  name = "golang.org/x/lint"
+  packages = [
+    ".",
+    "golint",
+  ]
+  pruneopts = "UT"
+  revision = "06c8688daad7faa9da5a0c2f163a3d14aac986ca"
+
+[[projects]]
+  branch = "master"
   digest = "1:a412caf33b5d3c7938c28e1e745c10664bd180277b73ab3b34c0c467886f9969"
   name = "golang.org/x/net"
   packages = [
@@ -133,6 +144,19 @@
   version = "v0.3.0"
 
 [[projects]]
+  branch = "master"
+  digest = "1:c0bb60d9eb4609e058ba4a0cd78b0f95d409bd7f2736155b8f60b70117584fcd"
+  name = "golang.org/x/tools"
+  packages = [
+    "go/ast/astutil",
+    "go/gcexportdata",
+    "go/internal/gcimporter",
+    "go/types/typeutil",
+  ]
+  pruneopts = "UT"
+  revision = "f60d9635b16a5a57b06eaa119614ba4df421966a"
+
+[[projects]]
   digest = "1:cbc72c4c4886a918d6ab4b95e347ffe259846260f99ebdd8a198c2331cf2b2e9"
   name = "gopkg.in/go-playground/validator.v8"
   packages = ["."]
@@ -165,6 +189,7 @@
     "github.com/DATA-DOG/godog/gherkin",
     "github.com/gin-gonic/contrib/static",
     "github.com/gin-gonic/gin",
+    "golang.org/x/lint/golint",
     "gopkg.in/resty.v1",
   ]
   solver-name = "gps-cdcl"

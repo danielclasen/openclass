@@ -11,20 +11,20 @@ import (
 func main() {
 
 	engine, api := GetMainEngine()
-	SetupRouting(api)
+	setupRouting(api)
 
 	// Start and run the server
 	engine.Run(":3000")
 }
 
-func GetMainEngine() (engine *gin.Engine, api *gin.RouterGroup) {
+func getMainEngine() (engine *gin.Engine, api *gin.RouterGroup) {
 	engine = gin.Default()
 	engine.Use(static.Serve("/", static.LocalFile("./web", true)))
 	api = engine.Group("/api/v1")
 	return
 }
 
-func SetupRouting(api *gin.RouterGroup) {
+func setupRouting(api *gin.RouterGroup) {
 
 	//repo initialization
 	coursesRepository := repository.NewCourseRepository()

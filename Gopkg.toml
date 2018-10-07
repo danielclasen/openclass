@@ -24,6 +24,7 @@
 #   go-tests = true
 #   unused-packages = true
 
+required = ["golang.org/x/lint/golint"]
 
 [prune]
   go-tests = true
@@ -36,3 +37,7 @@
 [[constraint]]
   name = "github.com/DATA-DOG/godog"
   version = "0.7.7"
+
+[[constraint]]
+  branch = "master"
+  name = "golang.org/x/lint"
