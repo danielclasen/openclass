@@ -5,10 +5,11 @@
     <mat-expansion-panel *ngFor="let course of courses">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{course.title}}
+          {{course.title}} with {{course.lecturer}}
         </mat-panel-title>
         <mat-panel-description>
           {{course.description}}
+          <mat-chip class="price-tag">{{ (course.price/100) }}€</mat-chip>
         </mat-panel-description>
       </mat-expansion-panel-header>
 

@@ -1,3 +1,17 @@
 .container {
   padding: 30px;
 }
+
+.price-tag {
+  padding: 0px 10px;
+  margin-left: 10px;
+}
+
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
