@@ -1,0 +1,13 @@
+<div *ngFor="let session of sessions" class="session-pane">
+  <h2 class="mat-h2">
+    <mat-icon>calendar_today</mat-icon> {{session.date | date}}
+    <span class="mat-caption">
+      <mat-icon>place</mat-icon> {{session.location}}
+    </span>
+  </h2>
+
+  <app-participant-list [session]="session"></app-participant-list>
+  <mat-divider></mat-divider>
+</div>
+<p class="mat-caption" *ngIf="sessions.length == 0">No sessions available :(</p>
+

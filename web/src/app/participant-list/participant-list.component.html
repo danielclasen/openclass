@@ -1,0 +1,29 @@
+<div class="participants">
+
+  <div class="mat-h3">Participants ({{persons.length}}/{{session.maxStudents}})</div>
+
+  <div class="participants-list">
+    <mat-chip-list *ngIf="persons.length > 0">
+      <mat-chip *ngFor="let person of persons"><img ngxGravatar [email]="person.email" [size]="24" [round]="true" class="gravatar">{{person.firstName}}</mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div *ngIf="persons.length < session.maxStudents">
+    <form [formGroup]="personForm" (ngSubmit)="onPersonFormSubmit(personForm.value)" novalidate>
+
+      <mat-form-field>
+        <input formControlName="firstName" name="firstName" matInput placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="lastName" name="lastName" matInput placeholder="Last Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="email" name="email" matInput placeholder="Email address">
+      </mat-form-field>
+
+      <button mat-button type="submit">JOIN</button>
+
+    </form>
+  </div>
+
+</div>
