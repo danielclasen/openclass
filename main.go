@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	engine, api := GetMainEngine()
+	engine, api := getMainEngine()
 	setupRouting(api)
 
 	// Start and run the server
