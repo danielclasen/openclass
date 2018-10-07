@@ -1,11 +1,11 @@
 package main
 
 import (
+	"github.com/danielclasen/openclass/controller"
+	"github.com/danielclasen/openclass/repository"
+	"github.com/danielclasen/openclass/service"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	"openclass/controller"
-	"openclass/repository"
-	"openclass/service"
 )
 
 func main() {

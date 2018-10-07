@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/colors"
+	"github.com/danielclasen/openclass/test"
 	"gopkg.in/resty.v1"
 	"net/http/httptest"
-	"openclass/test"
 	"os"
 	"testing"
 )

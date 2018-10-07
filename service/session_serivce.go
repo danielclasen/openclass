@@ -1,8 +1,8 @@
 package service
 
 import (
-	"openclass/model"
-	"openclass/repository"
+	"github.com/danielclasen/openclass/model"
+	"github.com/danielclasen/openclass/repository"
 )
 
 type SessionService struct {

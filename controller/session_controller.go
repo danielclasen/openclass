@@ -1,10 +1,10 @@
 package controller
 
 import (
+	"github.com/danielclasen/openclass/model"
+	"github.com/danielclasen/openclass/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"openclass/model"
-	"openclass/service"
 	"strconv"
 )
 

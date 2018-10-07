@@ -2,7 +2,7 @@ package repository
 
 import (
 	"errors"
-	"openclass/model"
+	"github.com/danielclasen/openclass/model"
 )
 
 type CourseRepository interface {
