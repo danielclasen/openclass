@@ -17,7 +17,10 @@ matrix:
     - "10"
     before_script:
     - cd web
-    - npm install
     script:
+    - npm ci
     - npm run test
     - npm run build
+    cache:
+      directories:
+      - "$HOME/.npm"
