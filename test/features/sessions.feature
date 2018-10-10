@@ -124,3 +124,34 @@ Feature: sessions api
         }
       ]
       """
+
+  Scenario: Can't participate in a session twice
+    When I send a POST request to /api/v1/sessions/1/participations with body:
+      """
+      {
+        "firstName": "Bar",
+        "lastName": "Foo",
+        "email": "bar@foo.com"
+      }
+      """
+    Then the response should be 204
+    When I send a POST request to /api/v1/sessions/1/participations with body:
+      """
+      {
+        "firstName": "Bar",
+        "lastName": "Foo",
+        "email": "bar@foo.com"
+      }
+      """
+    Then the response should be 400
+    When I send a GET request to /api/v1/sessions/1/participations
+    Then the response should be 200 and match this json:
+      """
+      [
+        {
+          "firstName": "Bar",
+          "lastName": "Foo",
+          "email": "bar@foo.com"
+        }
+      ]
+      """

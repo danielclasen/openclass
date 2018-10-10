@@ -34,7 +34,7 @@ func setupRouting(api *gin.RouterGroup) {
 	//service initialization
 	courseService := service.NewCourseService(&coursesRepository)
 	sessionService := service.NewSessionService(&sessionRepository, &courseService)
-	participationService := service.NewParticipationService(&participationRepository)
+	participationService := service.NewParticipationService(&participationRepository, &sessionService)
 
 	//controller initialization
 	courseController := controller.NewCourseController(api, &courseService, &sessionService)
