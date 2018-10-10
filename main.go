@@ -28,33 +28,19 @@ func setupRouting(api *gin.RouterGroup) {
 
 	//repo initialization
 	coursesRepository := repository.NewCourseRepository()
-
 	sessionRepository := repository.NewSessionRepository()
-
 	participationRepository := repository.NewParticipationRepository()
 
 	//service initialization
-	courseService := new(service.CourseService)
-	courseService.CourseRepository = coursesRepository
-
-	sessionService := new(service.SessionService)
-	sessionService.SessionRepository = sessionRepository
-	sessionService.CourseService = courseService
-
-	participationService := new(service.ParticipationService)
-	participationService.ParticipationRepository = participationRepository
+	courseService := service.NewCourseService(&coursesRepository)
+	sessionService := service.NewSessionService(&sessionRepository, &courseService)
+	participationService := service.NewParticipationService(&participationRepository)
 
 	//controller initialization
-	courseController := new(controller.CourseController)
-	courseController.ApiRouter = api
-	courseController.CourseService = courseService
-	courseController.SessionService = sessionService
+	courseController := controller.NewCourseController(api, &courseService, &sessionService)
 	courseController.Routes()
 
-	sessionController := new(controller.SessionController)
-	sessionController.ApiRouter = api
-	sessionController.SessionService = sessionService
-	sessionController.ParticipationService = participationService
+	sessionController := controller.NewSessionController(api, &sessionService, &participationService)
 	sessionController.Routes()
 
 }

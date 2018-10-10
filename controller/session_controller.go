@@ -9,13 +9,17 @@ import (
 )
 
 type SessionController struct {
-	ApiRouter            gin.IRouter
-	SessionService       *service.SessionService
-	ParticipationService *service.ParticipationService
+	apiRouter            *gin.RouterGroup
+	sessionService       *service.SessionService
+	participationService *service.ParticipationService
+}
+
+func NewSessionController(apiRouter *gin.RouterGroup, sessionService *service.SessionService, participationService *service.ParticipationService) SessionController {
+	return SessionController{apiRouter: apiRouter, sessionService: sessionService, participationService: participationService}
 }
 
 func (controller *SessionController) Routes() *gin.RouterGroup {
-	api := controller.ApiRouter.Group("/sessions")
+	api := controller.apiRouter.Group("/sessions")
 	{
 		api.GET("/:id", controller.getByIdHandler())
 		api.GET("/:id/participations", controller.getParticipationsHandler())
@@ -28,7 +32,7 @@ func (controller *SessionController) Routes() *gin.RouterGroup {
 func (controller *SessionController) getByIdHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
-		session, e := controller.SessionService.GetSession(id)
+		session, e := controller.sessionService.GetSession(id)
 
 		if !handleError(c, e, http.StatusNotFound) {
 			c.JSON(http.StatusOK, session)
@@ -41,7 +45,7 @@ func (controller *SessionController) postHandler() gin.HandlerFunc {
 		newSession := model.Session{}
 		c.ShouldBind(&newSession)
 
-		session, e := controller.SessionService.CreateSession(newSession)
+		session, e := controller.sessionService.CreateSession(newSession)
 		if !handleError(c, e, http.StatusBadRequest) {
 			c.JSON(http.StatusCreated, session)
 		}
@@ -51,10 +55,10 @@ func (controller *SessionController) postHandler() gin.HandlerFunc {
 func (controller *SessionController) getParticipationsHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
-		_, e := controller.SessionService.GetSession(id)
+		_, e := controller.sessionService.GetSession(id)
 		if !handleError(c, e, http.StatusNotFound) {
 
-			persons := controller.ParticipationService.GetAllParticipatingPersonsForSessionId(id)
+			persons := controller.participationService.GetAllParticipatingPersonsForSessionId(id)
 			c.JSON(http.StatusOK, persons)
 
 		}
@@ -64,13 +68,13 @@ func (controller *SessionController) getParticipationsHandler() gin.HandlerFunc 
 func (controller *SessionController) postParticipationHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
-		_, e := controller.SessionService.GetSession(id)
+		_, e := controller.sessionService.GetSession(id)
 		if !handleError(c, e, http.StatusNotFound) {
 
 			person := model.Person{}
 			c.ShouldBind(&person)
 
-			_, err := controller.ParticipationService.CreateParticipationForSessionId(id, person)
+			_, err := controller.participationService.CreateParticipationForSessionId(id, person)
 
 			if !handleError(c, err, http.StatusBadRequest) {
 				c.JSON(http.StatusNoContent, nil)
