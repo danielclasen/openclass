@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// Session represents the actual happening of a course on a given date on a given location.
 type Session struct {
 	Id          int       `json:"id"`
 	CourseId    int       `json:"courseId" binding:"required"`

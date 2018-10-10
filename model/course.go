@@ -1,5 +1,6 @@
 package model
 
+// Course represents a single instance of a Course which can be taken on openclass.
 type Course struct {
 	Id          int    `json:"id"`
 	Title       string `json:"title" binding:"required"`

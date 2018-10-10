@@ -8,16 +8,21 @@ import (
 	"strconv"
 )
 
+// CourseController holds all the required dependencies to act as a controller facade or delivery layer for the Course
+// model and its immediate children/siblings.
 type CourseController struct {
 	apiRouter      *gin.RouterGroup
 	courseService  *service.CourseService
 	sessionService *service.SessionService
 }
 
+// NewCourseController creates a new controller instance with the given dependencies.
 func NewCourseController(apiRouter *gin.RouterGroup, courseService *service.CourseService, sessionService *service.SessionService) CourseController {
 	return CourseController{apiRouter: apiRouter, courseService: courseService, sessionService: sessionService}
 }
 
+// Routes registers this controllers sub-routing in the main apiRouter. It returns a RouterGroup containing only the
+// routes for the operations on the Course model.
 func (controller *CourseController) Routes() *gin.RouterGroup {
 	api := controller.apiRouter.Group("/courses")
 	{

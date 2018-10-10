@@ -8,16 +8,21 @@ import (
 	"strconv"
 )
 
+// SessionController holds all the required dependencies to act as a controller facade or delivery layer for the Session
+// model and its immediate children/siblings.
 type SessionController struct {
 	apiRouter            *gin.RouterGroup
 	sessionService       *service.SessionService
 	participationService *service.ParticipationService
 }
 
+// NewSessionController creates a new controller instance with the given dependencies.
 func NewSessionController(apiRouter *gin.RouterGroup, sessionService *service.SessionService, participationService *service.ParticipationService) SessionController {
 	return SessionController{apiRouter: apiRouter, sessionService: sessionService, participationService: participationService}
 }
 
+// Routes registers this controllers sub-routing in the main apiRouter. It returns a RouterGroup containing only the
+// routes for the operations on the Session model.
 func (controller *SessionController) Routes() *gin.RouterGroup {
 	api := controller.apiRouter.Group("/sessions")
 	{
