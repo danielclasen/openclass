@@ -9,7 +9,7 @@ matrix:
     script:
     - test -z "$(go fmt)"
     - go vet ./...
-    - go test
+    - go test -v ./...
     - go doc
 
   - language: node_js
