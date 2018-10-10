@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/danielclasen/openclass.svg?branch=master)](https://travis-ci.org/danielclasen/openclass)
 
-# Stack
+# openclass
 
 Backend:
 - go 1.11
