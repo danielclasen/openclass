@@ -73,7 +73,11 @@ func (controller *CourseController) getSessionsHandler() gin.HandlerFunc {
 		sessions, err := controller.sessionService.GetSessionsForCourseId(courseId)
 
 		if !handleError(c, err, http.StatusBadRequest) {
-			c.JSON(http.StatusOK, sessions)
+			if len(sessions) == 0 {
+				c.JSON(http.StatusOK, []model.Session{})
+			} else {
+				c.JSON(http.StatusOK, sessions)
+			}
 		}
 	}
 }

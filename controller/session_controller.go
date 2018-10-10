@@ -64,7 +64,12 @@ func (controller *SessionController) getParticipationsHandler() gin.HandlerFunc 
 		if !handleError(c, e, http.StatusNotFound) {
 
 			persons := controller.participationService.GetAllParticipatingPersonsForSessionId(id)
-			c.JSON(http.StatusOK, persons)
+
+			if len(persons) == 0 {
+				c.JSON(http.StatusOK, []model.Person{})
+			} else {
+				c.JSON(http.StatusOK, persons)
+			}
 
 		}
 	}
