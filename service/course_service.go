@@ -9,7 +9,7 @@ type CourseService struct {
 	CourseRepository repository.CourseRepository
 }
 
-func (service *CourseService) GetCourses() *[]model.Course {
+func (service *CourseService) GetCourses() []*model.Course {
 	return service.CourseRepository.FindAll()
 }
 

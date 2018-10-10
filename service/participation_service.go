@@ -9,15 +9,16 @@ type ParticipationService struct {
 	ParticipationRepository repository.ParticipationRepository
 }
 
-func (service *ParticipationService) GetAllParticipatingPersonsForSessionId(sessionId int) *[]model.Person {
+func (service *ParticipationService) GetAllParticipatingPersonsForSessionId(sessionId int) []*model.Person {
 	participations := service.ParticipationRepository.FindAllBySessionId(sessionId)
 
-	persons := make([]model.Person, 0)
-	for _, participation := range *participations {
-		persons = append(persons, participation.Person)
+	var persons []*model.Person
+
+	for i := 0; i < len(participations); i++ {
+		persons = append(persons, &participations[i].Person)
 	}
 
-	return &persons
+	return persons
 }
 
 func (service *ParticipationService) CreateParticipationForSessionId(sessionId int, person model.Person) (*model.Participation, error) {

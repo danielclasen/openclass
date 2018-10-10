@@ -10,7 +10,7 @@ type SessionService struct {
 	CourseService     *CourseService
 }
 
-func (service *SessionService) GetSessionsForCourseId(courseId int) (sessions *[]model.Session, err error) {
+func (service *SessionService) GetSessionsForCourseId(courseId int) (sessions []*model.Session, err error) {
 	return service.SessionRepository.FindAllByCourseId(courseId), nil
 }
 
