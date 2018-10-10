@@ -9,8 +9,8 @@ import (
 // ParticipationService is a layer between the controller facade and the repository. It holds all necessary dependencies needed
 // to perform the required business logic and/or data mutation applied to the Person/Participation type.
 type ParticipationService struct {
-	participationRepository *repository.ParticipationRepository
-	sessionService          *SessionService
+	participationRepository repository.ParticipationStorage
+	sessionService          SessionServiceProvider
 }
 
 // NewParticipationService returns a new service instance

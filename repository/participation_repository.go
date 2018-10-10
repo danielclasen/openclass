@@ -5,6 +5,11 @@ import (
 	"github.com/danielclasen/openclass/model"
 )
 
+type ParticipationStorage interface {
+	FindAllBySessionId(sessionId int) []*model.Participation
+	Store(participation model.Participation) (*model.Participation, error)
+}
+
 // ParticipationRepository is a layer between the services and the actual underlying data source. In that particular case the
 // data source is hardcoded and kept in memory without any persistence.
 type ParticipationRepository struct {

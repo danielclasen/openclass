@@ -5,6 +5,12 @@ import (
 	"github.com/danielclasen/openclass/repository"
 )
 
+type SessionServiceProvider interface {
+	GetSessionsForCourseId(courseId int) ([]*model.Session, error)
+	GetSession(sessionId int) (*model.Session, error)
+	CreateSession(session model.Session) (*model.Session, error)
+}
+
 // SessionService is a layer between the controller facade and the repository. It holds all necessary dependencies needed
 // to perform the required business logic and/or data mutation applied to the Session type.
 type SessionService struct {
@@ -19,13 +25,13 @@ func NewSessionService(sessionRepository *repository.SessionRepository, courseSe
 
 // GetSessionsForCourseId fetches all Sessions for the given courseId. It returns a slice of pointers to the actual Session
 // instances and any error occurred.
-func (service *SessionService) GetSessionsForCourseId(courseId int) (sessions []*model.Session, err error) {
+func (service *SessionService) GetSessionsForCourseId(courseId int) ([]*model.Session, error) {
 	return service.sessionRepository.FindAllByCourseId(courseId), nil
 }
 
 // GetSession fetches the one Session with the given sessionId from the repository. It returns a pointer to the found Session
 // and any error occurred.
-func (service *SessionService) GetSession(sessionId int) (sessions *model.Session, err error) {
+func (service *SessionService) GetSession(sessionId int) (*model.Session, error) {
 	return service.sessionRepository.FindById(sessionId)
 }
 
