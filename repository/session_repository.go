@@ -42,7 +42,9 @@ func (s *SessionRepository) FindById(id int) (*model.Session, error) {
 func (s *SessionRepository) FindAllByCourseId(courseId int) []*model.Session {
 	var filtered []*model.Session
 	for i := 0; i < len(s.Sessions); i++ {
-		filtered = append(filtered, &s.Sessions[i])
+		if s.Sessions[i].CourseId == courseId {
+			filtered = append(filtered, &s.Sessions[i])
+		}
 	}
 	return filtered
 }

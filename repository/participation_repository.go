@@ -27,7 +27,9 @@ func (s *ParticipationRepository) FindAllBySessionId(sessionId int) []*model.Par
 	var filtered []*model.Participation
 
 	for i := 0; i < len(s.Participations); i++ {
-		filtered = append(filtered, &s.Participations[i])
+		if s.Participations[i].SessionId == sessionId {
+			filtered = append(filtered, &s.Participations[i])
+		}
 	}
 
 	return filtered
